@@ -1,0 +1,64 @@
+.vehicle-spotlight {
+  --spotlight-bg: #fff;
+  --spotlight-text: #1a1a1a;
+  --spotlight-price: #c8102e;
+
+  display: grid;
+  gap: 24px;
+  padding: 24px 16px;
+  background: var(--spotlight-bg);
+  color: var(--spotlight-text);
+}
+
+.vehicle-spotlight.dark {
+  --spotlight-bg: #1a1a1a;
+  --spotlight-text: #f4f4f4;
+  --spotlight-price: #ff6b7a;
+}
+
+.vehicle-spotlight .vehicle-spotlight-media picture,
+.vehicle-spotlight .vehicle-spotlight-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* no image authored yet: drop the empty media column so the text starts at the left */
+.vehicle-spotlight .vehicle-spotlight-media:empty {
+  display: none;
+}
+
+.vehicle-spotlight .vehicle-spotlight-body h2 {
+  margin: 0 0 8px;
+  font-size: 1.75rem;
+}
+
+.vehicle-spotlight .vehicle-spotlight-price {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--spotlight-price);
+}
+
+.vehicle-spotlight .vehicle-spotlight-description {
+  margin-bottom: 24px;
+}
+
+.vehicle-spotlight .vehicle-spotlight-description p {
+  margin: 0 0 12px;
+}
+
+@media (width >= 600px) {
+  .vehicle-spotlight {
+    padding: 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .vehicle-spotlight {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 48px;
+    padding: 48px;
+  }
+}

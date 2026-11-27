@@ -123,6 +123,25 @@ export function decorateMain(main) {
 }
 
 /**
+ * TEMPORARY placeholder: appends a Vehicle Spotlight block at the end of the page's main
+ * (before the footer) so it is visible before content is authored in Universal Editor.
+ * Remove this function and its call in loadEager once the block is authored on the page.
+ * @param {Element} main The main element of the page
+ */
+function appendPlaceholderVehicle(main) {
+  main.insertAdjacentHTML('beforeend', `
+    <div>
+      <div class="vehicle-spotlight">
+        <div><div></div></div>
+        <div><div>Vehicle name</div></div>
+        <div><div>Price on request</div></div>
+        <div><div><p>Placeholder description. Content will be added in Universal Editor.</p></div></div>
+        <div><div><a href="#">Drive now</a></div></div>
+      </div>
+    </div>`);
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
@@ -131,6 +150,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
+    appendPlaceholderVehicle(main); // TEMPORARY, see appendPlaceholderVehicle
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
