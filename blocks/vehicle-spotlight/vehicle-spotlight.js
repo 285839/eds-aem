@@ -9,11 +9,12 @@ function getCell(row) {
 
 /**
  * Decorates the vehicle spotlight block.
- * Authored rows are in model order: image, title, price, description, cta.
+ * Authored rows are in model order: image, details, cta.
+ * The details cell groups the text fields (title, price, description) in that order.
  * @param {Element} block The block element
  */
 export default function decorate(block) {
-  const [imageRow, titleRow, priceRow, descriptionRow, ctaRow] = [...block.children];
+  const [imageRow, detailsRow, ctaRow] = [...block.children];
 
   // media column
   const media = document.createElement('div');
@@ -25,26 +26,29 @@ export default function decorate(block) {
   const body = document.createElement('div');
   body.className = 'vehicle-spotlight-body';
 
-  const title = getCell(titleRow)?.textContent.trim();
+  // grouped text fields, in model order: title, price, description
+  const detailsCell = getCell(detailsRow);
+  const [titleEl, priceEl, ...descriptionEls] = [...(detailsCell?.children ?? [])];
+
+  const title = titleEl?.textContent.trim();
   if (title) {
     const heading = document.createElement('h2');
     heading.textContent = title;
     body.append(heading);
   }
 
-  const price = getCell(priceRow)?.textContent.trim();
+  const price = priceEl?.textContent.trim();
   if (price) {
-    const priceEl = document.createElement('p');
-    priceEl.className = 'vehicle-spotlight-price';
-    priceEl.textContent = price;
-    body.append(priceEl);
+    const priceNode = document.createElement('p');
+    priceNode.className = 'vehicle-spotlight-price';
+    priceNode.textContent = price;
+    body.append(priceNode);
   }
 
-  const description = getCell(descriptionRow);
-  if (description) {
+  if (descriptionEls.length) {
     const text = document.createElement('div');
     text.className = 'vehicle-spotlight-description';
-    text.append(...description.childNodes);
+    text.append(...descriptionEls);
     body.append(text);
   }
 

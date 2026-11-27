@@ -37,21 +37,21 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "title",
+          "name": "details_title",
           "label": "Model name",
           "value": ""
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "price",
+          "name": "details_price",
           "label": "Price",
           "value": ""
         },
         {
           "component": "richtext",
           "valueType": "string",
-          "name": "description",
+          "name": "details_description",
           "label": "Description",
           "value": ""
         },
